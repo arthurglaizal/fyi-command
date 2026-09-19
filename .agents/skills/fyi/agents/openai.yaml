@@ -1,0 +1,6 @@
+interface:
+  display_name: "FYI"
+  short_description: "Give context without giving a task."
+  default_prompt: "Use $fyi to take this as context, not as a task."
+policy:
+  allow_implicit_invocation: false
