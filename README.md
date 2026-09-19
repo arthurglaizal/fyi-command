@@ -44,7 +44,7 @@ Then write the information right after the command:
 
 ## What the command does
 
-The assistant treats the message as information, never as an order. It does not start a new task, create or edit files, or run an analysis because of it.
+The assistant treats the message as information, never as an order. It never starts anything new because of it: no new task, no new file, no research. It only continues work that was already in progress, adjusted for what it just learned.
 
 It sorts the information into one of three cases and answers accordingly.
 
@@ -57,18 +57,22 @@ Noted, no impact on what I am doing.
 **2. Impact.** The information changes something concrete: a value, a constraint, a file, an assumption, or a next step. One or two lines naming what changes, then the work continues with the change applied.
 
 ```txt
-That changes the header I am building: 240 px does not fit the current 64 px bar.
-I am switching the logo to a constrained height and keeping the ratio.
+That changes the header: 240 px does not fit the 64 px bar.
+I am constraining the logo height and keeping the ratio.
 ```
 
 **3. Conflict or blocker.** The information invalidates the work in progress or contradicts an earlier decision. The assistant stops, says what it invalidates, and asks one question. It does not undo anything on its own.
 
 ```txt
-The new logo is wider than the sidebar we agreed on yesterday, so the collapsed
-state no longer works. Do I keep the sidebar width, or switch to an icon version?
+That breaks the collapsed sidebar we agreed on, which is 180 px.
+Keep the sidebar width and crop, or switch to an icon version?
 ```
 
 In all three cases, the information stays in context for the rest of the session and is applied silently later when it becomes relevant.
+
+One exception keeps the command honest: if the information describes a problem that would normally call for action but sits outside the current work, the assistant acknowledges it and asks in the same line whether it should look into it. It never starts on its own.
+
+FYI only runs when you invoke it. It is never triggered automatically by the assistant, even if you write "for your information" in a normal message.
 
 ## How is this different from memory?
 

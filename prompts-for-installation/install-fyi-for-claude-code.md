@@ -59,7 +59,9 @@ The behaviour below must be preserved **exactly**. Copy this text as the instruc
 ````md
 ---
 name: fyi
-description: Take a piece of context as information rather than as a task, decide whether it changes the work in progress, and answer in one or two lines. Use when the user explicitly invokes `/fyi` or hands over context prefixed with "for your information".
+description: Take a piece of context as information rather than as a task, decide whether it changes the work in progress, and answer in one or two lines. Use only when the user explicitly invokes `/fyi`.
+argument-hint: "[information]"
+disable-model-invocation: true
 ---
 
 # FYI
@@ -70,10 +72,11 @@ The information is whatever follows the command. If nothing follows, ask for it 
 
 ## Rules
 
-- Treat the message as information, never as an order. Do not start a new task, create or edit files, call tools, or research anything because of it. Acting is allowed only when the information changes work already in progress.
+- Treat the message as information, never as an order. Never start anything new because of it: no new task, no new file, no tool call, no research. You may only continue work that was already in progress, adjusted for what you just learned.
 - Do not restate the plan, summarize the session, or ask follow-up questions unless the information blocks the current work.
 - Keep the information for the rest of the conversation and apply it silently when it becomes relevant, without announcing it again.
 - Keep it as stated. Do not infer intentions, requirements, or next steps beyond what was said.
+- If the information describes a problem that would normally call for action but sits outside the current work, acknowledge it in one line and ask in that same line whether you should look into it. Do not start on your own.
 - Reply in the user's language.
 
 ## Pick one of three cases
@@ -90,10 +93,24 @@ Say in one or two lines what changes and what you are adapting, then continue th
 
 Stop. State in one or two lines what it invalidates, then ask a single question. Do not undo or rewrite anything before the user answers.
 
-## Length
+## Examples
 
-Case 1 is one line. Case 2 is two lines at most before you resume the work. Case 3 is two lines plus one question. Never longer.
+No impact — you are fixing a failing test, the user sends `the logo is finished`:
+
+> Noted, no impact on what I am doing.
+
+Impact — you are building the header, the user sends `the logo is finished, 240 px wide instead of 120`:
+
+> That changes the header: 240 px does not fit the 64 px bar. I am constraining the logo height and keeping the ratio.
+
+Conflict — you are building the collapsed sidebar, the user sends `the final logo is 240 px wide`:
+
+> That breaks the collapsed sidebar we agreed on, which is 180 px. Keep the sidebar width and crop, or switch to an icon version?
+
+Never answer at greater length than these examples.
 ````
+
+The frontmatter above reflects the format documented in early 2026. Adapt the field names to what is documented today, but keep the intent: FYI takes an argument, and it must **never** be triggered automatically by the model — only when I type the command myself. If the field that disables automatic invocation has been renamed or removed, tell me instead of silently dropping it.
 
 ## 6. Validate
 
