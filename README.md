@@ -43,20 +43,20 @@ Same information, three different situations. You are building an app with your 
 /fyi the logo is finished, it is 240 px wide instead of 120
 ```
 
-**No impact** — the assistant is fixing a failing test:
+🟢 **No impact** — the assistant is fixing a failing test:
 
 ```txt
 Noted, no impact on what I am doing.
 ```
 
-**Impact** — the assistant is building the header:
+🟡 **Impact** — the assistant is building the header:
 
 ```txt
 That changes the header: 240 px does not fit the 64 px bar.
 I am constraining the logo height and keeping the ratio.
 ```
 
-**Conflict** — the assistant is building the collapsed sidebar, 180 px wide:
+🔴 **Conflict** — the assistant is building the collapsed sidebar, 180 px wide:
 
 ```txt
 That breaks the collapsed sidebar we agreed on, which is 180 px.
