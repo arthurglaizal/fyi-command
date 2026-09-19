@@ -14,20 +14,11 @@ Mid-session you learn something the assistant should know: the logo is finally d
 
 Sending it as a normal message makes the assistant treat it as a request. It stops, plans, asks what you want, or starts rewriting things you never asked it to touch.
 
-FYI removes that. The information is registered, the impact is judged once, and the work continues.
-
-## Best for
-
-FYI is useful when you want to:
-
-* Drop a piece of context without interrupting what the assistant is doing.
-* Let the assistant decide by itself whether that information matters right now.
-* Store something that will only become relevant later in the session.
-* Correct an assumption without triggering a full replan.
+FYI removes that. You drop the information without interrupting the work, the assistant decides by itself whether it matters right now, and anything that only becomes relevant later stays in context until it does.
 
 ## How to use
 
-Once installed, trigger it with the form native to your tool:
+Once installed, trigger it with the form native to your tool, then write the information right after the command:
 
 | Where | Trigger |
 | --- | --- |
@@ -36,43 +27,41 @@ Once installed, trigger it with the form native to your tool:
 | Other AI coding assistants | the form created at install time |
 | Regular AI chat | paste the chat version, then start a message with `FYI` |
 
-Then write the information right after the command:
+## What the command does
+
+The assistant treats the message as information, never as an order. It never starts anything new because of it: no new task, no new file, no research. It only continues work already in progress, adjusted for what it just learned.
+
+It sorts the information into one of three cases, answers in a line or two, and keeps the information in context for the rest of the session, applying it silently later when it becomes relevant.
+
+Two guardrails: FYI runs only when you invoke it, never automatically, even if you write "for your information" in a normal message. And if your information describes a problem that would normally call for action but sits outside the current work, the assistant acknowledges it and asks in the same line whether it should look into it, instead of starting on its own.
+
+## Examples
+
+Same information, three different situations. You are building an app with your assistant, and the logo is finally ready:
 
 ```txt
 /fyi the logo is finished, it is 240 px wide instead of 120
 ```
 
-## What the command does
-
-The assistant treats the message as information, never as an order. It never starts anything new because of it: no new task, no new file, no research. It only continues work that was already in progress, adjusted for what it just learned.
-
-It sorts the information into one of three cases and answers accordingly.
-
-**1. No impact.** The information changes nothing in progress. One line, then the assistant resumes exactly what it was doing.
+**No impact** — the assistant is fixing a failing test:
 
 ```txt
 Noted, no impact on what I am doing.
 ```
 
-**2. Impact.** The information changes something concrete: a value, a constraint, a file, an assumption, or a next step. One or two lines naming what changes, then the work continues with the change applied.
+**Impact** — the assistant is building the header:
 
 ```txt
 That changes the header: 240 px does not fit the 64 px bar.
 I am constraining the logo height and keeping the ratio.
 ```
 
-**3. Conflict or blocker.** The information invalidates the work in progress or contradicts an earlier decision. The assistant stops, says what it invalidates, and asks one question. It does not undo anything on its own.
+**Conflict** — the assistant is building the collapsed sidebar, 180 px wide:
 
 ```txt
 That breaks the collapsed sidebar we agreed on, which is 180 px.
 Keep the sidebar width and crop, or switch to an icon version?
 ```
-
-In all three cases, the information stays in context for the rest of the session and is applied silently later when it becomes relevant.
-
-One exception keeps the command honest: if the information describes a problem that would normally call for action but sits outside the current work, the assistant acknowledges it and asks in the same line whether it should look into it. It never starts on its own.
-
-FYI only runs when you invoke it. It is never triggered automatically by the assistant, even if you write "for your information" in a normal message.
 
 ## How is this different from memory?
 
