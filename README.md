@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/fyi-demo.gif" alt="FYI demo: hand the assistant a piece of information mid-work and it decides whether it changes anything" width="960">
+</p>
+
 # FYI
 
 > **Give your assistant context without giving it a task.**
