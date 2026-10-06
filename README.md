@@ -8,7 +8,7 @@
 
 Works with Claude Code, Codex, and any AI assistant.
 
-FYI is a minimal reusable command for the moment you have something to tell your assistant, but nothing you want it to do.
+FYI is a minimal reusable skill for the moment you have something to tell your assistant, but nothing you want it to do.
 
 You hand over the information, it decides whether that changes the work in progress, and it answers in one line. Then it keeps the information for the rest of the session.
 
@@ -22,7 +22,7 @@ FYI removes that. You drop the information without interrupting the work, the as
 
 ## How to use
 
-Once installed, trigger it with the form native to your tool, then write the information right after the command:
+Once installed, trigger it with the form native to your tool, then write the information right after the trigger:
 
 | Where | Trigger |
 | --- | --- |
@@ -31,7 +31,7 @@ Once installed, trigger it with the form native to your tool, then write the inf
 | Other AI coding assistants | the form created at install time |
 | Regular AI chat | paste the chat version, then start a message with `FYI` |
 
-## What the command does
+## What the skill does
 
 The assistant treats the message as information, never as an order. It never starts anything new because of it: no new task, no new file, no research. It only continues work already in progress, adjusted for what it just learned.
 
@@ -98,8 +98,8 @@ Claude Code asks whether to install FYI for all your sessions or in this project
 Clone this repository, enter it, then link the skill into your personal skills folder:
 
 ```sh
-git clone https://github.com/arthurglaizal/fyi-command.git
-cd fyi-command
+git clone https://github.com/arthurglaizal/fyi.git
+cd fyi
 mkdir -p "$HOME/.claude/skills"
 ln -s "$PWD/.claude/skills/fyi" "$HOME/.claude/skills/fyi"
 ```
@@ -129,8 +129,8 @@ Codex asks whether to install the skill for all your projects or in the current 
 Clone this repository, enter it, then link the skill into your personal skills folder:
 
 ```sh
-git clone https://github.com/arthurglaizal/fyi-command.git
-cd fyi-command
+git clone https://github.com/arthurglaizal/fyi.git
+cd fyi
 mkdir -p "$HOME/.agents/skills"
 ln -s "$PWD/.agents/skills/fyi" "$HOME/.agents/skills/fyi"
 ```
@@ -162,7 +162,7 @@ It sets the rule for the current chat: any message you start with `FYI` is treat
 ## Repository structure
 
 ```txt
-fyi-command/
+fyi/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
@@ -184,15 +184,15 @@ fyi-command/
     └── install-fyi-for-any-ai.md
 ```
 
-## More AI workflow commands
+## More AI workflow skills
 
-Small, portable commands for Claude Code, Codex, and any AI assistant.
+Small, portable skills for Claude Code, Codex, and any AI assistant.
 
-| Command | What it does |
+| Skill | What it does |
 | --- | --- |
 | [WaitGo](https://github.com/arthurglaizal/wait-go) | Batches your instructions, then executes only when you say go. |
 | [Session Recap](https://github.com/arthurglaizal/session-recap) | Recaps what you did in the current session and what to pick up next. |
-| [Noob Command](https://github.com/arthurglaizal/noob-command) | Rewrites the last AI answer in simple, concise language. |
+| [Noob](https://github.com/arthurglaizal/noob) | Rewrites the last AI answer in simple, concise language. |
 | [Ask Mode](https://github.com/arthurglaizal/ask-mode) | Lets you question your codebase without the assistant changing anything. |
 | [AI Handoff](https://github.com/arthurglaizal/ai-handoff) | Packages the current context so another AI can continue the work. |
 
